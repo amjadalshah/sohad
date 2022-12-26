@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body onload="generateCode()">
+    <!-- start add student form -->
+    <div class="container">
+        <div class="forms">
+            <div class="form add-student">
+                <span class="title">إضافة طالب</span>
+                <!-- start form add student -->
+                <form name="addForm" method="post">
+                    <div class="input-field">
+                        <input type="text" placeholder="اسم المستخدم(hiba_5006)" name="userName" required />
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <span id="userNameError" class="error-span"></span>
+                    <div class="input-field">
+                        <input type="text" placeholder="اسم الطالب(سارة الشاعر)" name="name" required />
+                        <i class="uil uil-user icon"></i>
+                    </div>
+                    <span id="nameError" class="error-span"></span>
+                    <div class="input-field">
+                        <input type="date" placeholder="تاريخ الولادة" name="birthdayDate" required />
+                        <i class="uil uil-calendar-alt icon"></i>
+                    </div>ܻ
+                    <span id="birthdayDateError" class="error-span"></span>
+                    <div class="input-field">
+                        <select name="program">
+                            <option label="اختر البرنامج"></option>
+                            <option value="BIT">BIT</option>
+                            <option value="BAIT">BAIT</option>
+                            <option value="ISE">ISE</option>
+                            <option value="ITE">ITE</option>
+                        </select>
+                    </div>
+                    <span id="programError" class="error-span"></span>
+                    <div class="input-field">
+                        <input type="tel" placeholder="رقم المستخدم(963993445681)" name="phone" required />
+                        <i class="uil uil-phone icon"></i>
+                    </div>
+                    <span id="phoneError" class="error-span"></span>
+                    <br>
+                    <del><span id="captchaCode"></span></del>
+                    <div class="input-field">
+                        <input type="text" placeholder="أدخل رمز التحقق" name="captcha" required />
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <span id="captchaError" class="error-span"></span>
+                    <div class="input-field button">
+                        <input type="button" value="إضافة" onclick="addStudent()" />
+                    </div>
+                </form>
+                <!-- end form add student-->
+            </div>
+        </div>
+    </div>
+    <!-- end add student form -->
+
+    <!-- start students table -->
+    <div class="container">
+        <div class="forms">
+            <div class="form data-table">
+                <span class="title">جدول بأسماء طالب</span>
+                <!-- start filter by program -->
+                <div class="input-field select">
+                    <h5>البرنامج:</label>
+                        <form name="getStudentByProgramForm">
+                            <select name="program" onInput="getStudentsByProgram()">
+                                <option value="all">كل</option>
+                                <option value="BIT">BIT</option>
+                                <option value="BAIT">BAIT</option>
+                                <option value="ISE">ISE</option>
+                                <option value="ITE">ITE</option>
+                            </select>
+                        </form>
+                </div>
+                <!-- end filter by program -->
+                <!-- start filter by student information -->
+                <form id="filterForm" name="filterForm" method="post">
+                    <h5>الفرز حسب:</h5>
+                    <div class="filter-aria">
+                        <div class="input-field">
+                            <input type="radio" name="filter" value="id" onchange="getStudentsByFilter()" />
+                            <label>رقم المستخدم</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="radio" name="filter" value="userName" onchange="getStudentsByFilter()" />
+                            <label>اسم المستخدم</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="radio" name="filter" value="program" onchange="getStudentsByFilter()" />
+                            <label>البرنامج</label>
+                        </div>ܻ
+                    </div>
+                    <table border="1" id="table">
+                        <tr>
+                            <td>متسلسل</td>
+                            <td>اسم المستخدم</td>
+                            <td>اسم طالب</td>
+                            <td>البرناج</td>
+                        </tr>
+                    </table>
+                </form>
+                <!-- end filter by student information -->
+                <!-- to json btn -->
+                <button onclick="toJson()" class="tojson-btn">convert to JSON</button>
+                <!-- to json btn -->
+            </div>
+            <!-- json data aria -->
+            <textarea id="jsonData"></textarea>
+            <!-- json data aria -->
+        </div>
+    </div>
+    <!-- end students table -->
+    <script src="scripts.js"></script>
+</body>
+
+</html>
